@@ -21,7 +21,7 @@ public class pwGen{
 		if(!(number || letter || sonder)){
 			System.out.println("every option was dismissed");
 			System.exit(0);
-		}
+		}//if
 		
 		for(int n=0;n<pwLength;n++){
 			System.out.print(getOne(number,letter,sonder));
