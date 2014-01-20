@@ -1,6 +1,5 @@
 /*
 A simple terminal based password generator.
-Interactive only.
 */
 
 import java.io.Console;

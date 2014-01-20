@@ -4,6 +4,10 @@ usage:
 
 java pwGen <s|n|l> laenge <blacklist>
 
+s = sonderzeichen
+n = zahlen
+l = buchstaben
+
 ex:
 java pwGen nl 20 iIo0O
 the output will be a string with:
