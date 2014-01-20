@@ -1,1 +1,12 @@
 Ein einfacher Passwortgenerator.
+
+usage:
+
+java pwGen <s|n|l> laenge <blacklist>
+
+ex:
+java pwGen nl 20 iIo0O
+the output will be a string with:
+	* length 20
+	* nubers and letters
+but without chars: i,I,o,0 and O 

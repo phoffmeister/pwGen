@@ -7,24 +7,55 @@ import java.io.Console;
 
 public class pwGen{
 	public static void main(String args[]){
-		Console console;
-		int pwLength;
+		int pwLength=0;
 		boolean number,letter,sonder;
-		console = System.console();
-
 		sonder=false;letter=false;number=false;
-		pwLength = Integer.parseInt(console.readLine("how long? "));
-		if(console.readLine("numbers? (y/n) ").equals("y")){number=true;};
-		if(console.readLine("letters? (y/n) ").equals("y")){letter=true;};
-		if(console.readLine("sonders? (y/n) ").equals("y")){sonder=true;};
+		String blacklist = null;
+		if(args.length==0){
+			Console console;			
+			console = System.console();
+
+			sonder=false;letter=false;number=false;
+			pwLength = Integer.parseInt(console.readLine("how long? "));
+			if(console.readLine("numbers? (y/n) ").equals("y")){number=true;};
+			if(console.readLine("letters? (y/n) ").equals("y")){letter=true;};
+			if(console.readLine("sonders? (y/n) ").equals("y")){sonder=true;};
 		
+			
+		}else if(args.length==2){
+			pwLength = Integer.parseInt(args[1]);
+			if(args[0].contains("s"))sonder=true;
+			if(args[0].contains("l"))letter=true;
+			if(args[0].contains("n"))number=true;
+		}else if(args.length==3){
+			pwLength = Integer.parseInt(args[1]);
+			if(args[0].contains("s"))sonder=true;
+			if(args[0].contains("l"))letter=true;
+			if(args[0].contains("n"))number=true;
+			blacklist=args[2];
+		}
+		
+
 		if(!(number || letter || sonder)){
 			System.out.println("every option was dismissed");
 			System.exit(0);
 		}//if
-		
-		for(int n=0;n<pwLength;n++){
-			System.out.print(getOne(number,letter,sonder));
+
+		if(blacklist==null){
+			for(int n=0;n<pwLength;n++){
+				System.out.print(getOne(number,letter,sonder));
+			}
+		}else{
+			String picked;
+			for(int n=0;n<pwLength;n++){
+				picked = getOne(number, letter, sonder);
+				if(blacklist.contains(picked)){
+					n--;
+				}else{
+					System.out.print(picked);
+				}
+			}
+
 		}
 		System.out.print("\n");
 		
@@ -32,9 +63,9 @@ public class pwGen{
 	
 	public static String getOne(boolean number, boolean letter, boolean sonder){
 		int choice;
-		choice = (int) (Math.random()*85)+1;
+		choice = (int) (Math.random()*86);
 		
-		if(choice>0 && choice<=9){
+		if(choice>=0 && choice<=9){
 			if(number){
 				if(choice == 0)
 					return "0";
