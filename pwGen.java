@@ -38,7 +38,7 @@ public class pwGen{
 		if(!(number || letter || sonder)){
 			System.out.println("every option was dismissed");
 			System.exit(0);
-		}//if
+		}
 
 		if(blacklist==null){
 			for(int n=0;n<pwLength;n++){
